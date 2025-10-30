@@ -1,0 +1,102 @@
+/* In frontend/src/pages/Alerts.module.css */
+
+.pageContainer {
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.backButton {
+  background-color: #f7f7f7;
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: #eee;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+}
+
+/* Individual Alert Item */
+.alertItem {
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.alertHeader {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alertMessage {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.alertTimestamp {
+  font-size: 0.8rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Specific Alert Type Styles */
+.warning {
+  composes: alertItem;
+  background-color: #fefbeb;
+  border-color: var(--alert-yellow);
+}
+.warning .alertHeader {
+  color: #d18f00;
+}
+
+.critical {
+  composes: alertItem;
+  background-color: #fef5f5;
+  border-color: var(--alert-red);
+}
+.critical .alertHeader {
+  color: var(--alert-red);
+}
+
+.notice {
+  composes: alertItem;
+  background-color: #f6faff;
+  border-color: #007bff;
+}
+.notice .alertHeader {
+  color: #007bff;
+}
+
+.noAlerts {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  padding: 2rem;
+}

@@ -1,0 +1,113 @@
+/* In frontend/src/pages/ViewRequests.module.css */
+
+.pageContainer {
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.backButton {
+  background-color: #f7f7f7;
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: #eee;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+}
+
+/* Individual Request Card */
+.requestCard {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.cardInfo {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.cardInfo strong {
+  color: #000;
+}
+
+.cardInfo p {
+  margin-bottom: 0.5rem;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.actionBtn {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.acceptBtn {
+  composes: actionBtn;
+  background-color: var(--primary-green);
+  color: white;
+}
+.acceptBtn:hover {
+  background-color: var(--primary-green-dark);
+}
+
+.rejectBtn {
+  composes: actionBtn;
+  background-color: var(--alert-red);
+  color: white;
+}
+.rejectBtn:hover {
+  background-color: #a0001c;
+}
+
+.actionBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.noRequests {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  padding: 2rem;
+}

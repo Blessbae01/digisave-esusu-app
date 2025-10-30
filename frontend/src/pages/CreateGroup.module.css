@@ -1,0 +1,70 @@
+/* In frontend/src/pages/CreateGroup.module.css */
+
+.pageContainer {
+  padding: 1.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header span {
+  color: var(--primary-green);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Style for each input field */
+.formInput {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background-color: #f7f7f7;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formInput::placeholder {
+  color: #999;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 143, 57, 0.2);
+}
+
+/* Style for the create button */
+.submitBtn {
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.submitBtn:hover {
+  background-color: var(--primary-green-dark);
+}
+
+.submitBtn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}

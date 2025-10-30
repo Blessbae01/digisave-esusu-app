@@ -1,0 +1,139 @@
+/* In frontend/src/pages/Home.module.css */
+
+.pageContainer {
+  padding: 1rem;
+}
+
+/* Header section with the "Create" button */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.createGroupBtn {
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between icon and text */
+  transition: background-color 0.2s ease;
+}
+
+.createGroupBtn:hover {
+  background-color: var(--primary-green-dark);
+}
+
+.createGroupBtn svg {
+  font-size: 1.2rem;
+}
+
+/* "Explore" section */
+.exploreHeader {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Individual Group Card */
+.groupCardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.groupCard {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.groupCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.groupName {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.statusTag {
+  background-color: #e6f9f0; /* Light green */
+  color: var(--primary-green);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+}
+
+.cardBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.cardRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLabel {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.cardValue {
+  font-weight: 600;
+}
+
+.cardValueAmount {
+  font-weight: 600;
+  color: var(--primary-green);
+  font-size: 1rem;
+}
+
+.cardFooter {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.membersInfo {
+  font-weight: 600;
+}
+
+.numbersAvailable {
+  color: var(--primary-green);
+  font-weight: 600;
+}

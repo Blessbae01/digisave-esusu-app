@@ -1,0 +1,100 @@
+/* In frontend/src/pages/Auth.module.css */
+
+.pageContainer {
+  padding: 2rem 1.5rem;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subHeader {
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background-color: #f7f7f7;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formInput::placeholder {
+  color: #999;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 143, 57, 0.2);
+}
+
+.submitBtn {
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.submitBtn:hover {
+  background-color: var(--primary-green-dark);
+}
+
+.submitBtn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* For the link at the bottom (e.g., "Already have an account?") */
+.bottomLink {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.bottomLink a {
+  color: var(--primary-green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bottomLink a:hover {
+  text-decoration: underline;
+}

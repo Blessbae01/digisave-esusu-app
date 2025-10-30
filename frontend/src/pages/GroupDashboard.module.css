@@ -1,0 +1,243 @@
+/* In frontend/src/pages/GroupDashboard.module.css */
+
+.pageContainer {
+  padding: 1.5rem;
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.header span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  margin-left: 0.5rem;
+  background-color: #eee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* Green Balance Box */
+.balanceBox {
+  background: var(--primary-green);
+  color: var(--text-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 143, 57, 0.2);
+}
+
+.balanceLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.balanceAmount {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.balanceAmount:last-of-type {
+  margin-top: 1rem; /* Space between the two balances */
+}
+
+/* Group Details Card */
+.groupDetailsCard {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cardBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.cardRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLabel {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.cardValue {
+  font-weight: 600;
+}
+
+/* Action Links (Contribute, Alerts, etc.) */
+.actionLinks {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.actionLink {
+  flex: 1;
+  text-decoration: none;
+  background-color: #f7f7f7;
+  color: var(--text-dark);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.actionLink:hover {
+  background-color: #eee;
+}
+
+/* Admin-only link */
+.adminLink {
+  composes: actionLink; /* Inherits all styles */
+  background-color: #e6f9f0;
+  color: var(--primary-green);
+}
+
+.adminLink:hover {
+  background-color: #d1f2e1;
+}
+
+/* Member List */
+.sectionHeader {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 0.5rem;
+}
+
+.memberList {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.memberListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.memberListItem:last-child {
+  border-bottom: none;
+}
+
+.memberInfo {
+  font-weight: 500;
+}
+.memberInfo span {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.adminTag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  background-color: #e6f9f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* History Tables */
+.tableContainer {
+  margin-bottom: 2rem;
+}
+
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historyTable th,
+.historyTable td {
+  border: 1px solid var(--border-light);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.historyTable th {
+  background-color: #f7f7f7;
+  font-size: 0.9rem;
+}
+
+.historyTable td {
+  font-size: 0.9rem;
+}
+
+.historyTable tbody tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+/* Join Button Box */
+.joinBox {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  text-align: center;
+}
+.joinBox p {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.joinBtn {
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.joinBtn:hover {
+  background-color: var(--primary-green-dark);
+}
+
+/* Logout Button */
+.logoutBtn {
+  display: block;
+  width: 100%;
+  background-color: var(--alert-red);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: background-color 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background-color: #a0001c; /* Darker red */
+}
