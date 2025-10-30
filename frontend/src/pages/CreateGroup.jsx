@@ -51,7 +51,7 @@ function CreateGroup() {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/groups',
+        '${import.meta.env.VITE_API_URL}/api/groups',
         formData,
         config
       );

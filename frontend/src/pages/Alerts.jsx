@@ -33,7 +33,7 @@ function Alerts() {
           },
         };
         const { data } = await axios.get(
-          `http://localhost:5000/api/alerts/group/${groupId}`,
+          `${import.meta.env.VITE_API_URL}/api/alerts/group/${groupId}`,
           config
         );
         setAlerts(data);
