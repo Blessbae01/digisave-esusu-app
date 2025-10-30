@@ -32,7 +32,7 @@ function Login() {
 
       localStorage.setItem('user', JSON.stringify(response.data));
       alert('Login successful!');
-      navigate('/'); // Redirect to the home page
+      window.location.href = '/';// Redirect to the home page
 
     } catch (error) {
       console.error('Error during login:', error.response ? error.response.data : error.message);
