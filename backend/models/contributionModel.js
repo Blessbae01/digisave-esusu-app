@@ -21,7 +21,7 @@ const contributionSchema = mongoose.Schema(
     method: {
       type: String,
       required: true,
-      enum: ['transfer', 'card'],
+      enum: ['transfer', 'card', 'payout'],
     },
     reference: {
       type: String, // This will be the Paystack reference
