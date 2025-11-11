@@ -45,11 +45,11 @@ function GroupDashboard() {
           historyRes,
           myHistoryRes
         ] = await Promise.all([
-          axios.get(`http://localhost:5000/api/groups/${groupId}`, config),
-          axios.get(`http://localhost:5000/api/contributions/group/${groupId}/total`, config),
-          axios.get(`http://localhost:5000/api/contributions/group/${groupId}/my-balance`, config),
-          axios.get(`http://localhost:5000/api/contributions/group/${groupId}/history`, config),
-          axios.get(`http://localhost:5000/api/contributions/group/${groupId}/my-history`, config)
+          axios.get(`${import.meta.env.VITE_API_URL}/api/groups/${groupId}`, config),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/contributions/group/${groupId}/total`, config),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/contributions/group/${groupId}/my-balance`, config),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/contributions/group/${groupId}/history`, config),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/contributions/group/${groupId}/my-history`, config)
         ]);
 
         const groupData = groupRes.data;

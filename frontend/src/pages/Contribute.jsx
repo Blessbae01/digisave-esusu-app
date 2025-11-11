@@ -28,7 +28,7 @@ function Contribute() {
       try {
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
         const { data } = await axios.get(
-          `http://localhost:5000/api/groups/${groupId}`,
+          `${import.meta.env.VITE_API_URL}/api/groups/${groupId}`,
           config
         );
         setGroup(data);
@@ -54,7 +54,7 @@ function Contribute() {
       const verificationData = { reference, groupId, amount };
       
       await axios.post(
-        'http://localhost:5000/api/contributions/verify',
+        '${import.meta.env.VITE_API_URL}/api/contributions/verify',
         verificationData,
         config
       );
@@ -74,7 +74,7 @@ function Contribute() {
         const config = { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${userInfo.token}` } };
         const transferData = { groupId, amount, method: 'transfer' };
         await axios.post(
-          'http://localhost:5000/api/contributions/transfer',
+          '${import.meta.env.VITE_API_URL}/api/contributions/transfer',
           transferData,
           config
         );

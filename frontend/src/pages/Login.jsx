@@ -26,13 +26,13 @@ function Login() {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/users/login',
+        '${import.meta.env.VITE_API_URL}/api/users/login',
         formData
       );
 
       localStorage.setItem('user', JSON.stringify(response.data));
       alert('Login successful!');
-      navigate('/'); // Redirect to the home page
+      window.location.href = '/';// Redirect to the home page
 
     } catch (error) {
       console.error('Error during login:', error.response ? error.response.data : error.message);

@@ -24,7 +24,7 @@ function ViewRequests() {
         },
       };
       const { data } = await axios.get(
-        `http://localhost:5000/api/requests/group/${groupId}`,
+        `${import.meta.env.VITE_API_URL}/api/requests/group/${groupId}`,
         config
       );
       setRequests(data);
@@ -53,7 +53,7 @@ function ViewRequests() {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       };
       await axios.put(
-        `http://localhost:5000/api/requests/${requestId}/approve`,
+        `${import.meta.env.VITE_API_URL}/api/requests/${requestId}/approve`,
         {},
         config
       );
@@ -77,7 +77,7 @@ function ViewRequests() {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       };
       await axios.put(
-        `http://localhost:5000/api/requests/${requestId}/reject`,
+        `${import.meta.env.VITE_API_URL}/api/requests/${requestId}/reject`,
         {},
         config
       );

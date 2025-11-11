@@ -52,7 +52,7 @@ function JoinGroup() {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/requests',
+        '${import.meta.env.VITE_API_URL}/api/requests',
         requestData,
         config
       );
