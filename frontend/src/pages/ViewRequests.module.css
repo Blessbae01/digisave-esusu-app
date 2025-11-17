@@ -1,113 +1,147 @@
 /* In frontend/src/pages/ViewRequests.module.css */
 
 .pageContainer {
-  padding: 1.5rem;
-  max-width: 600px;
-  margin: 0 auto;
+    /* Replaces max-width, alignSelf, and padding settings */
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 40px;
+    min-height: 100vh;
 }
 
+.centerContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loadingIndicator {
+    font-size: 1.2rem;
+    color: #008f39;
+}
+
+.errorText { 
+    color: red; 
+    text-align: center; 
+    margin-top: 50px; 
+}
+
+/* --- Header & Back Button --- */
 .backButton {
-  background-color: #f7f7f7;
-  color: var(--text-dark);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: background-color 0.2s ease;
+    /* Link styling */
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-decoration: none; /* Removes link underline */
+    color: #333;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
 }
-
 .backButton:hover {
-  background-color: #eee;
+    background-color: #eee;
 }
-
+.backButtonText {
+    color: #333; 
+    font-weight: 600;
+    font-size: 14px;
+}
 .header {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  text-align: center;
-  margin: 1rem 0 2rem 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333; 
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-/* Individual Request Card */
+/* --- Individual Request Card --- */
 .requestCard {
-  background-color: var(--background-light);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    /* RN shadow translated to CSS box-shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+    transition: box-shadow 0.2s;
 }
-
+.requestCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 .cardHeader {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 1rem;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333; 
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f0f0f0;
 }
-
 .cardInfo {
-  font-size: 0.95rem;
-  color: #333;
-  line-height: 1.6;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.4; /* Adjusted from RN lineHeight: 22 */
+}
+.cardInfoText {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.cardInfoLabel {
+    font-weight: bold;
+    color: #000;
 }
 
-.cardInfo strong {
-  color: #000;
-}
-
-.cardInfo p {
-  margin-bottom: 0.5rem;
-}
-
+/* --- Action Buttons --- */
 .actions {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: 1rem;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
 }
-
 .actionBtn {
-  flex: 1;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 0.8rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
+    /* Replaces flex: 1 and TouchableOpacity styles */
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
 }
-
+.actionBtnText {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
 .acceptBtn {
-  composes: actionBtn;
-  background-color: var(--primary-green);
-  color: white;
+    background-color: #008f39; /* primary-green */
 }
-.acceptBtn:hover {
-  background-color: var(--primary-green-dark);
+.acceptBtn:hover:not(:disabled) {
+    background-color: #007a30;
 }
-
 .rejectBtn {
-  composes: actionBtn;
-  background-color: var(--alert-red);
-  color: white;
+    background-color: #d90429; /* Alert Red */
 }
-.rejectBtn:hover {
-  background-color: #a0001c;
+.rejectBtn:hover:not(:disabled) {
+    background-color: #c00325;
 }
-
-.actionBtn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.actionBtnDisabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
-
 .noRequests {
-  text-align: center;
-  font-size: 1rem;
-  color: #666;
-  padding: 2rem;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    padding: 30px;
+    border: 1px dashed #e0e0e0;
+    border-radius: 8px;
 }

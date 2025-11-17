@@ -1,74 +1,95 @@
 /* In frontend/src/pages/JoinGroup.module.css */
 
 .pageContainer {
-  padding: 1.5rem;
-  max-width: 500px;
-  margin: 0 auto;
+    /* Replaces fullScreen, pageContainer, and alignSelf */
+    padding: 24px;
+    padding-top: 40px; 
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
+/* Added for navigation */
+.backButton {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+.backButton:hover {
+    color: #008f39;
+}
+
+/* --- Header --- */
 .header {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  text-align: center;
-  margin-bottom: 0.5rem;
+    font-size: 22px;
+    font-weight: 700;
+    color: #333; 
+    text-align: center;
+    margin-bottom: 5px;
 }
-
 .subHeader {
-  font-size: 1rem;
-  color: #666;
-  text-align: center;
-  margin-bottom: 2rem;
-  word-wrap: break-word; /* In case the group ID is long */
+    font-size: 15px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
+/* --- Form Structure --- */
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
 }
 
-/* Style for each input field */
+/* --- Input Fields Styling --- */
 .formInput {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  color: var(--text-dark);
-  background-color: #f7f7f7;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    padding: 16px; 
+    font-size: 16px;
+    color: #333;
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
-.formInput::placeholder {
-  color: #999;
-}
-
-.formInput:focus {
-  outline: none;
-  border-color: var(--primary-green);
-  box-shadow: 0 0 0 2px rgba(0, 143, 57, 0.2);
-}
-
-/* Style for the create button */
+/* --- Submit Button Styling --- */
 .submitBtn {
-  background-color: var(--primary-green);
-  color: var(--text-light);
-  font-size: 1.1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.2s ease;
+    /* Replaces TouchableOpacity styles */
+    background-color: #008f39;
+    padding: 16px; 
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 18px; 
+    font-weight: 600;
+    text-align: center;
+    margin-top: 25px;
+    transition: background-color 0.2s;
 }
 
-.submitBtn:hover {
-  background-color: var(--primary-green-dark);
+.submitBtn:hover:not(:disabled) {
+    background-color: #007a30;
 }
 
-.submitBtn:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
+.buttonDisabled {
+    /* RN opacity: 0.6 translated */
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.loadingIndicator {
+    color: white;
+    text-align: center;
 }

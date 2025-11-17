@@ -1,6 +1,7 @@
-/* In frontend/src/pages/Alerts.module.css */
 
-.pageContainer {
+/* In frontend/src/pages/Alerts.module.css 
+
+/.pageContainer {
   padding: 1.5rem;
   max-width: 600px;
   margin: 0 auto;
@@ -34,7 +35,7 @@
   margin: 1rem 0 2rem 0;
 }
 
-/* Individual Alert Item */
+/* Individual Alert Item 
 .alertItem {
   padding: 1.25rem;
   margin-bottom: 1rem;
@@ -66,7 +67,7 @@
   font-style: italic;
 }
 
-/* Specific Alert Type Styles */
+/* Specific Alert Type Styles 
 .warning {
   composes: alertItem;
   background-color: #fefbeb;
