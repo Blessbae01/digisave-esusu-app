@@ -98,3 +98,45 @@
 .bottomLink a:hover {
   text-decoration: underline;
 }
+
+.policyContainer {
+    margin-top: 1.5rem;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.policyCheckboxGroup {
+    display: flex;
+    align-items: center;
+}
+
+.policyText {
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px dashed #e0e0e0;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.policyText h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.policyText p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.policyCloseBtn {
+    background-color: #008f39;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+}

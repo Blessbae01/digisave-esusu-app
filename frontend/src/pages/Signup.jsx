@@ -3,140 +3,171 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import styles from './Auth.module.css'; // Import our new CSS module
+import styles from './Auth.module.css';
+import Policy from '../components/Policy'; // <--- NEW IMPORT
 
 function Signup() {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    bvn: '',
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        bvn: '',
+        email: '',
+        password: '',
     });
-  };
+    
+    // --- NEW STATES FOR BVN AND POLICY ---
+    const [bvnStatus, setBvnStatus] = useState(null); // null, 'checking', 'verified', 'error'
+    const [agreedToPolicy, setAgreedToPolicy] = useState(false); 
+    // -------------------------------------
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    const handleBvnChange = (e) => {
+        const { value } = e.target;
+        setFormData(prev => ({ ...prev, bvn: value }));
+        setBvnStatus(null); 
 
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/users/register`,
-        formData
-      );
-      
-      console.log('User registered successfully!', response.data);
-      alert('Signup successful! Please log in.');
-      navigate('/login'); // Redirect to login page
+        if (value.length === 11) {
+            setBvnStatus('checking');
+            // Simulate API latency (optional, for realism)
+            setTimeout(() => {
+                if (/^\d{11}$/.test(value)) {
+                    setBvnStatus('verified');
+                } else {
+                    setBvnStatus('error');
+                }
+            }, 500); 
+        } else if (value.length > 11) {
+            setBvnStatus('error');
+        }
+    };
 
-    } catch (error) {
-      console.error('Error during registration:', error.response ? error.response.data : error.message);
-      alert('Error: ' + (error.response?.data?.message || 'Signup failed'));
-    } finally {
-      setLoading(false);
-    }
-  };
+    const handleChange = (e) => {
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
 
-  return (
-    <div className={styles.pageContainer}>
-      <h2 className={styles.header}>Create Account</h2>
-      <p className={styles.subHeader}>Join a trusted savings community.</p>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if (!agreedToPolicy) {
+            alert("You must agree to the terms and policy before signing up.");
+            return;
+        }
 
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>First Name</label>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-            className={styles.formInput}
-          />
+        if (bvnStatus !== 'verified') {
+            alert("Please ensure your 11-digit BVN is verified.");
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/users/register`, 
+                formData
+            );
+            
+            alert('Signup successful! Please log in.');
+            navigate('/login'); 
+
+        } catch (error) {
+            const message = error.response?.data?.message || 'Signup failed.';
+            alert('Error: ' + message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getBvnMessage = () => {
+        if (bvnStatus === 'verified') {
+            return <span style={{color: 'green', fontWeight: 'bold'}}>✅ BVN Verified (Dummy Check)</span>;
+        }
+        if (bvnStatus === 'checking') {
+            return <span style={{color: '#f9a825'}}>⏳ Verifying...</span>;
+        }
+        if (bvnStatus === 'error') {
+            return <span style={{color: 'red'}}>❌ BVN must be 11 digits and numerical.</span>;
+        }
+        return null;
+    };
+
+
+    return (
+        <div className={styles.pageContainer}>
+            <header className={styles.brandingHeader}>
+                <h1 className={styles.appName}>DigiSave</h1>
+                <h3 className={styles.introMessage}>Create Your Account</h3>
+                <p className={styles.appDescription}>
+                    Join a trusted, KYC-verified community and start saving today.
+                </p>
+            </header>
+            
+            <form onSubmit={handleSubmit} className={styles.form}>
+                
+                {/* ... other input groups (firstName, lastName, phoneNumber) using handleChange ... */}
+
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>BVN (Bank Verification Number)</label>
+                    <input
+                        type="text"
+                        name="bvn"
+                        value={formData.bvn}
+                        onChange={handleBvnChange} // <-- Use new handler for BVN
+                        required
+                        minLength="11"
+                        maxLength="11"
+                        placeholder="11-digit BVN"
+                        className={styles.formInput}
+                    />
+                    <div style={{ marginTop: '5px' }}>
+                        {getBvnMessage()} {/* Display verification status */}
+                    </div>
+                </div>
+
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className={styles.formInput}
+                    />
+                </div>
+
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        className={styles.formInput}
+                    />
+                </div>
+                
+                {/* --- POLICY CHECKBOX (NEW) --- */}
+                <Policy 
+                    agreed={agreedToPolicy} 
+                    setAgreed={setAgreedToPolicy} 
+                />
+                
+                <button type="submit" className={styles.submitBtn} disabled={loading}>
+                    {loading ? 'Creating Account...' : 'Sign Up'}
+                </button>
+            </form>
+
+            <p className={styles.bottomLink}>
+                Already have an account? <Link to="/login">Log In</Link>
+            </p>
         </div>
-
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-            className={styles.formInput}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>Phone Number</label>
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            required
-            className={styles.formInput}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>BVN (Bank Verification Number)</label>
-          <input
-            type="text"
-            name="bvn"
-            value={formData.bvn}
-            onChange={handleChange}
-            required
-            minLength="11"
-            maxLength="11"
-            placeholder="11-digit BVN"
-            className={styles.formInput}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className={styles.formInput}
-          />
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className={styles.formInput}
-          />
-        </div>
-
-        <button type="submit" className={styles.submitBtn} disabled={loading}>
-          {loading ? 'Creating Account...' : 'Sign Up'}
-        </button>
-      </form>
-
-      <p className={styles.bottomLink}>
-        Already have an account? <Link to="/login">Log In</Link>
-      </p>
-    </div>
-  );
+    );
 }
 
 export default Signup;
