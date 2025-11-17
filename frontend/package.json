@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "VITE_API_URL=https://digisave-esusu-backend.onrender.com vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
