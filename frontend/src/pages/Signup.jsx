@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
-import Policy from '../components/Policy'; // <--- NEW IMPORT
-
+import Policy from '../components/Policy.jsx';
 function Signup() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
