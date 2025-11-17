@@ -1,4 +1,4 @@
-/* In frontend/src/pages/Auth.module.css 
+/* In frontend/src/pages/Auth.module.css */
 
 .pageContainer {
   padding: 2rem 1.5rem;
@@ -82,7 +82,7 @@
   cursor: not-allowed;
 }
 
-/* For the link at the bottom (e.g., "Already have an account?")
+/* For the link at the bottom (e.g., "Already have an account?") */
 .bottomLink {
   text-align: center;
   margin-top: 1.5rem;

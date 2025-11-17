@@ -1,147 +1,113 @@
 /* In frontend/src/pages/ViewRequests.module.css */
 
 .pageContainer {
-    /* Replaces max-width, alignSelf, and padding settings */
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    width: 100%;
-    padding-top: 40px;
-    min-height: 100vh;
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.centerContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.loadingIndicator {
-    font-size: 1.2rem;
-    color: #008f39;
-}
-
-.errorText { 
-    color: red; 
-    text-align: center; 
-    margin-top: 50px; 
-}
-
-/* --- Header & Back Button --- */
 .backButton {
-    /* Link styling */
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background-color: #f7f7f7;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 10px 15px;
-    text-decoration: none; /* Removes link underline */
-    color: #333;
-    margin-bottom: 20px;
-    transition: background-color 0.2s;
+  background-color: #f7f7f7;
+  color: var(--text-dark);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease;
 }
+
 .backButton:hover {
-    background-color: #eee;
+  background-color: #eee;
 }
-.backButtonText {
-    color: #333; 
-    font-weight: 600;
-    font-size: 14px;
-}
+
 .header {
-    font-size: 24px;
-    font-weight: 700;
-    color: #333; 
-    text-align: center;
-    margin-bottom: 30px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin: 1rem 0 2rem 0;
 }
 
-/* --- Individual Request Card --- */
+/* Individual Request Card */
 .requestCard {
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 15px;
-    /* RN shadow translated to CSS box-shadow */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
-    transition: box-shadow 0.2s;
-}
-.requestCard:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
-.cardHeader {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333; 
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #f0f0f0;
-}
-.cardInfo {
-    font-size: 15px;
-    color: #333;
-    line-height: 1.4; /* Adjusted from RN lineHeight: 22 */
-}
-.cardInfoText {
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-.cardInfoLabel {
-    font-weight: bold;
-    color: #000;
+  background-color: var(--background-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Action Buttons --- */
+.cardHeader {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.cardInfo {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.cardInfo strong {
+  color: #000;
+}
+
+.cardInfo p {
+  margin-bottom: 0.5rem;
+}
+
 .actions {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #f0f0f0;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
 }
+
 .actionBtn {
-    /* Replaces flex: 1 and TouchableOpacity styles */
-    flex: 1;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s;
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
-.actionBtnText {
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-}
+
 .acceptBtn {
-    background-color: #008f39; /* primary-green */
+  composes: actionBtn;
+  background-color: var(--primary-green);
+  color: white;
 }
-.acceptBtn:hover:not(:disabled) {
-    background-color: #007a30;
+.acceptBtn:hover {
+  background-color: var(--primary-green-dark);
 }
+
 .rejectBtn {
-    background-color: #d90429; /* Alert Red */
+  composes: actionBtn;
+  background-color: var(--alert-red);
+  color: white;
 }
-.rejectBtn:hover:not(:disabled) {
-    background-color: #c00325;
+.rejectBtn:hover {
+  background-color: #a0001c;
 }
-.actionBtnDisabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+
+.actionBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
+
 .noRequests {
-    text-align: center;
-    font-size: 16px;
-    color: #666;
-    padding: 30px;
-    border: 1px dashed #e0e0e0;
-    border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  padding: 2rem;
 }

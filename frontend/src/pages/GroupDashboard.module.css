@@ -1,298 +1,243 @@
 /* In frontend/src/pages/GroupDashboard.module.css */
 
 .pageContainer {
-    /* Replaces flex: 1, paddingHorizontal, and alignSelf: 'center' */
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-top: 20px;
-    min-height: 100vh;
-    box-sizing: border-box;
-    padding-bottom: 80px; /* Space for the bottom of the scrollable content */
+  padding: 1.5rem;
 }
 
-.centerContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.errorText {
-    color: red;
-    text-align: center;
-    margin-top: 50px;
-    padding: 0 20px;
-}
-
-/* --- Header --- */
 .header {
-    font-size: 24px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 20px;
-}
-.adminSpan {
-    /* Changed from RN inline style to standard CSS */
-    font-size: 14px;
-    font-weight: 500;
-    color: #666;
-    margin-left: 5px;
-    background-color: #eee;
-    padding: 4px 8px;
-    border-radius: 6px;
-    display: inline-block; /* Ensure padding works correctly */
-}
-.sectionHeader {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 5px;
-    margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
 }
 
-/* --- Balance Box --- */
+.header span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  margin-left: 0.5rem;
+  background-color: #eee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+/* Green Balance Box */
 .balanceBox {
-    background-color: #008f39;
-    color: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    /* RN shadow translated to CSS box-shadow */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  background: var(--primary-green);
+  color: var(--text-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 143, 57, 0.2);
 }
+
 .balanceLabel {
-    font-size: 14px;
-    font-weight: 500;
-    opacity: 0.9;
-    color: white;
-    text-transform: uppercase;
-    margin-top: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+  text-transform: uppercase;
 }
-.balanceLabelMargin {
-    margin-top: 10px;
-}
+
 .balanceAmount {
-    font-size: 30px;
-    font-weight: 700;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
 }
 
-/* --- Action Links --- */
-.actionLinks {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-.actionLink {
-    flex: 1;
-    background-color: #f7f7f7;
-    padding: 12px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none; /* Links need text-decoration removed */
-    color: #333;
-    font-weight: 600;
-    font-size: 14px;
-    text-align: center;
-    transition: background-color 0.2s;
-}
-.adminLink {
-    background-color: #e6f9f0;
-}
-.actionLink:hover {
-    background-color: #eee;
+.balanceAmount:last-of-type {
+  margin-top: 1rem; /* Space between the two balances */
 }
 
-/* --- Group Details Card --- */
+/* Group Details Card */
 .groupDetailsCard {
-    background-color: #f7f7f7;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-.cardHeader {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-.cardBody {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px; /* RN gap translated */
-}
-.cardRow {
-    /* RN width: '48%' translated to CSS */
-    width: 48%; 
-}
-.cardLabel {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 2px;
-}
-.cardValue {
-    font-weight: 600;
-    color: #333;
+  background-color: var(--background-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Member List --- */
-.memberListSection {
-    margin-bottom: 20px;
+.cardHeader {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
+
+.cardBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.cardRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLabel {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.cardValue {
+  font-weight: 600;
+}
+
+/* Action Links (Contribute, Alerts, etc.) */
+.actionLinks {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.actionLink {
+  flex: 1;
+  text-decoration: none;
+  background-color: #f7f7f7;
+  color: var(--text-dark);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.actionLink:hover {
+  background-color: #eee;
+}
+
+/* Admin-only link */
+.adminLink {
+  composes: actionLink; /* Inherits all styles */
+  background-color: #e6f9f0;
+  color: var(--primary-green);
+}
+
+.adminLink:hover {
+  background-color: #d1f2e1;
+}
+
+/* Member List */
+.sectionHeader {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 0.5rem;
+}
+
 .memberList {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden; /* RN overflow: 'hidden' */
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
 }
+
 .memberListItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--border-light);
 }
 .memberListItem:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
+
 .memberInfo {
-    flex: 1;
+  font-weight: 500;
 }
-.memberText {
-    font-size: 15px;
-    font-weight: 500;
-    margin: 0;
+.memberInfo span {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 0.5rem;
 }
-.memberChosenNum {
-    font-size: 13px;
-    color: #666;
-    margin-left: 5px;
-    font-weight: 400;
-}
+
 .adminTag {
-    font-size: 12px;
-    font-weight: 600;
-    color: #008f39;
-    background-color: #e6f9f0;
-    padding: 3px 8px;
-    border-radius: 6px;
-    display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  background-color: #e6f9f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
 }
 
-/* --- History Tables --- */
+/* History Tables */
 .tableContainer {
-    margin-bottom: 20px;
-}
-.historyTable {
-    width: 100%;
-    border-collapse: collapse; /* Standard HTML table style */
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.tableRowHeader {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #e0e0e0;
-}
-.tableHeaderCell {
-    padding: 12px;
-    font-weight: 600;
-    font-size: 12px;
-    color: #333;
-    text-align: left;
-    border-right: 1px solid #e0e0e0;
-}
-.tableHeaderCell:last-child {
-    border-right: none;
-}
-.tableRow {
-    border-bottom: 1px solid #fcfcfc;
-}
-.tableRowEven {
-    background-color: #fcfcfc;
-}
-.tableCell {
-    padding: 12px;
-    font-size: 14px;
-    color: #333;
-    text-align: left;
-    border-right: 1px solid #f0f0f0;
-}
-.tableCell:last-child {
-    border-right: none;
-}
-.tableEmptyCell {
-    color: #666;
-    text-align: center;
-    font-style: italic;
-    font-size: 14px;
-    padding: 15px;
-    background-color: #fff;
+  margin-bottom: 2rem;
 }
 
-/* --- Non-Member Join Box --- */
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historyTable th,
+.historyTable td {
+  border: 1px solid var(--border-light);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.historyTable th {
+  background-color: #f7f7f7;
+  font-size: 0.9rem;
+}
+
+.historyTable td {
+  font-size: 0.9rem;
+}
+
+.historyTable tbody tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+/* Join Button Box */
 .joinBox {
-    margin-top: 50px;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 400px;
-    width: 100%;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  text-align: center;
 }
-.joinBoxHeader {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-.joinBoxText {
-    margin-bottom: 15px;
-    text-align: center;
-    color: #555;
+.joinBox p {
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 .joinBtn {
-    background-color: #008f39;
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    transition: background-color 0.2s;
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
 .joinBtn:hover {
-    background-color: #007a30;
+  background-color: var(--primary-green-dark);
 }
 
-/* --- Logout Button --- */
+/* Logout Button */
 .logoutBtn {
-    width: 100%;
-    max-width: 400px;
-    background-color: #d90429;
-    padding: 16px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 30px auto 0 auto;
-    transition: background-color 0.2s;
+  display: block;
+  width: 100%;
+  background-color: var(--alert-red);
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: background-color 0.2s ease;
 }
+
 .logoutBtn:hover {
-    background-color: #c00325;
+  background-color: #a0001c; /* Darker red */
 }

@@ -1,87 +1,70 @@
 /* In frontend/src/pages/CreateGroup.module.css */
 
 .pageContainer {
-    /* Use standard width/margin for centering on web */
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 15px;
-    padding-top: 40px;
-    min-height: 100vh; /* Ensures a minimum height */
-    box-sizing: border-box;
-}
-
-/* Added for web UX */
-.backButton {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  padding: 1.5rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .header {
-    font-size: 24px;
-    font-weight: 700;
-    color: #333; /* var(--text-dark) equivalent */
-    text-align: center;
-    margin-bottom: 30px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.adminSpan {
-    color: #008f39; /* var(--primary-green) equivalent */
+.header span {
+  color: var(--primary-green);
 }
 
-/* --- Form Structure --- */
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Equivalent to gap: 20 in RN styles */
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-/* --- Input Fields Styling --- */
+/* Style for each input field */
 .formInput {
-    /* RN paddingVertical: 16 -> web padding: 16px */
-    padding: 16px; 
-    font-size: 16px;
-    color: #333;
-    background-color: #f7f7f7;
-    border: 1px solid #e0e0e0; /* var(--border-light) equivalent */
-    border-radius: 8px;
-    box-sizing: border-box; /* Ensures padding doesn't increase total width/height */
-    /* Removes default number spinner arrows */
-    -moz-appearance: textfield;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background-color: #f7f7f7;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* --- Submit Button Styling --- */
+.formInput::placeholder {
+  color: #999;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 143, 57, 0.2);
+}
+
+/* Style for the create button */
 .submitBtn {
-    background-color: #008f39; /* var(--primary-green) equivalent */
-    padding: 16px;
-    border-radius: 8px;
-    border: none; /* Web button default border removal */
-    cursor: pointer;
-    color: white; /* var(--text-light) equivalent */
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    transition: background-color 0.2s;
-    margin-top: 20px;
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
 }
 
-.submitBtn:hover:not(:disabled) {
-    background-color: #007a30;
+.submitBtn:hover {
+  background-color: var(--primary-green-dark);
 }
 
-.buttonDisabled {
-    background-color: #aaa; /* Disabled color */
-    cursor: not-allowed;
-}
-
-/* ActivityIndicator replaced by text or simple CSS spinner */
-.loadingIndicator {
-    color: white;
-    text-align: center;
+.submitBtn:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
 }
