@@ -4,11 +4,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 // --- SOCKET.IO IMPORTS ---
-const http = require('http'); 
-const { Server } = require('socket.io'); 
+const http = require('http'); // New import
+const { Server } = require('socket.io'); // New import
 // -------------------------
 
-const connectDB = require('./config/db.js'); 
+const connectDB = require('./config/db.js'); // <-- Import
 const userRoutes = require('./routes/userRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const requestRoutes = require('./routes/requestRoutes');
@@ -17,61 +17,31 @@ const alertRoutes = require('./routes/alertRoutes');
 
 const { startScheduler } = require('./scheduler/alertScheduler'); 
 const { startPayoutScheduler } = require('./scheduler/payoutScheduler');
+
+// <-- NEW IMPORT -->
 const { startActivateGroupsScheduler } = require('./scheduler/activateGroupsScheduler');
 
 // Load environment variables
 dotenv.config();
 
-connectDB(); 
+connectDB(); // <-- Call the connect function
 
 const app = express();
 
 // --- CREATE HTTP SERVER ---
-const server = http.createServer(app); 
+const server = http.createServer(app); // Use http module to create the server
 // --------------------------
 
-// ----------------------------------------------------------------------
-// --- 🛠️ CORRECTED CORS CONFIGURATION (Fixes PathError Crash) 🛠️ ---
-// ----------------------------------------------------------------------
-
-// Define the allowed origins as an Array
-const allowedOrigins = [
-    // 1. Local Development URL (default Vite port)
-    'http://localhost:5173', 
-    // 2. Deployed Vercel Frontend URL (CRITICAL FIX)
-    'https://digisave-esusu-app.vercel.app', 
-    // 3. Your Render Backend URL 
-    'https://digisave-esusu-backend.onrender.com'
-];
-
-// 1. Configure the Main CORS Middleware for Express Routes
-// This single block handles all requests, including preflight OPTIONS requests,
-// which prevents the 'PathError' crash you encountered.
-app.use(cors({
-    origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        // AND allow origins that are in the allowedOrigins array.
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            console.error('CORS blocked request from origin:', origin);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Explicitly allow all methods
-    credentials: true // Crucial for sending tokens/auth headers
-}));
-// ----------------------------------------------------------------------
-
 // Middleware
+app.use(cors()); // Enable Cross-Origin Resource Sharing
 app.use(express.json()); // Allow app to accept JSON
 
-// A simple test route 
+// A simple test route // --- API Routes ---
 app.get('/', (req, res) => {
-    res.send('Esusu App Backend is running!');
+  res.send('Esusu App Backend is running!');
 });
 
-// 2. Mount the API routes
+// 2. Mount the routes
 app.use('/api/users', userRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/requests', requestRoutes);
@@ -79,10 +49,9 @@ app.use('/api/contributions', contributionRoutes);
 app.use('/api/alerts', alertRoutes);
 
 // --- SOCKET.IO SERVER SETUP ---
-// 3. Socket.IO CORS Configuration
 const io = new Server(server, {
     cors: {
-        origin: allowedOrigins, // Use the configured allowedOrigins array
+        origin: "http://localhost:3000", // Allow your frontend to connect
         methods: ["GET", "POST"]
     }
 });
@@ -93,12 +62,14 @@ const onlineUsers = new Map();
 io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
     
+    // When a user logs in on the frontend, they send their ID here
     socket.on('userConnected', (userId) => {
         onlineUsers.set(userId, socket.id);
         console.log(`User ${userId} is now online.`);
     });
     
     socket.on('disconnect', () => {
+        // Remove user from the map on disconnect
         for (let [userId, socketId] of onlineUsers.entries()) {
             if (socketId === socket.id) {
                 onlineUsers.delete(userId);
@@ -113,16 +84,16 @@ io.on('connection', (socket) => {
 const PORT = process.env.PORT || 5000;
 
 // --- INITIALIZATIONS ---
-// Start the alert check for overdue payments
+// 1. Start the alert check for overdue payments
 startScheduler(); 
 
-// Start the automatic payout process
+// 2. Start the automatic payout process
 startPayoutScheduler(); 
 
-// Start the pending groups activation scheduler 
+// 3. Start the pending groups activation scheduler <-- NEW
 startActivateGroupsScheduler();
 
-// IMPORTANT: Use server.listen here!
-server.listen(PORT, () => { 
-    console.log(`Server is running on http://localhost:${PORT}`);
+// IMPORTANT: Change app.listen to server.listen
+server.listen(PORT, () => { // <--- USE 'server.listen' HERE
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
