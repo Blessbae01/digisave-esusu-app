@@ -31,20 +31,22 @@ const server = http.createServer(app);
 // --------------------------
 
 // ----------------------------------------------------------------------
-// --- 🛠️ CORS FIXES: ALLOW VERCEL FRONTEND TO ACCESS RENDER BACKEND 🛠️ ---
+// --- 🛠️ CORRECTED CORS CONFIGURATION (Fixes PathError Crash) 🛠️ ---
 // ----------------------------------------------------------------------
 
-// ⚠️ REPLACE 'YOUR_VERCEL_URL' with your actual Vercel domain! ⚠️
+// Define the allowed origins as an Array
 const allowedOrigins = [
-    // 1. Local Development URL
+    // 1. Local Development URL (default Vite port)
     'http://localhost:5173', 
-    // 2. Deployed Frontend URL (CRITICAL FIX)
-    process.env.FRONTEND_URL || 'https://digisave-esusu-app.vercel.app',
-    // 3. Your Render Backend URL (often needed for testing/internal calls)
+    // 2. Deployed Vercel Frontend URL (CRITICAL FIX)
+    'https://digisave-esusu-app.vercel.app', 
+    // 3. Your Render Backend URL 
     'https://digisave-esusu-backend.onrender.com'
 ];
 
-// 1. Configure the Main CORS Middleware for Express Routes (GET, POST, etc.)
+// 1. Configure the Main CORS Middleware for Express Routes
+// This single block handles all requests, including preflight OPTIONS requests,
+// which prevents the 'PathError' crash you encountered.
 app.use(cors({
     origin: (origin, callback) => {
         // Allow requests with no origin (like mobile apps or curl requests)
@@ -52,24 +54,12 @@ app.use(cors({
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS: ' + origin));
+            console.error('CORS blocked request from origin:', origin);
+            callback(new Error('Not allowed by CORS'));
         }
     },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Explicitly allow all required methods
-    credentials: true // Crucial for sending cookies/tokens with authorization headers
-}));
-
-// 2. Handle preflight requests (OPTIONS method) which are required for complex requests (like those with Authorization headers)
-app.options('*', cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS: ' + origin));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], 
-    credentials: true 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Explicitly allow all methods
+    credentials: true // Crucial for sending tokens/auth headers
 }));
 // ----------------------------------------------------------------------
 
@@ -89,7 +79,7 @@ app.use('/api/contributions', contributionRoutes);
 app.use('/api/alerts', alertRoutes);
 
 // --- SOCKET.IO SERVER SETUP ---
-// 3. Fix Socket.IO CORS Configuration to allow Vercel Frontend
+// 3. Socket.IO CORS Configuration
 const io = new Server(server, {
     cors: {
         origin: allowedOrigins, // Use the configured allowedOrigins array
