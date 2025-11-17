@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
-import Policy from '../components/Policy.jsx';
+import Policy from '../components/Policy.jsx'; // <--- NEW IMPORT
+
 function Signup() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -19,7 +20,7 @@ function Signup() {
     
     // --- NEW STATES FOR BVN AND POLICY ---
     const [bvnStatus, setBvnStatus] = useState(null); // null, 'checking', 'verified', 'error'
-    const [agreedToPolicy, setAgreedToPolicy] = useState(false); 
+    const [agreedToPolicy, setAgreedToPolicy] = useState(false); // CRITICAL: Policy Check
     // -------------------------------------
 
     const handleBvnChange = (e) => {
@@ -29,8 +30,9 @@ function Signup() {
 
         if (value.length === 11) {
             setBvnStatus('checking');
-            // Simulate API latency (optional, for realism)
+            // Simulate API latency
             setTimeout(() => {
+                // Check if it's 11 digits and purely numeric
                 if (/^\d{11}$/.test(value)) {
                     setBvnStatus('verified');
                 } else {
@@ -65,6 +67,7 @@ function Signup() {
         setLoading(true);
 
         try {
+            // Ensure you are using the correct web environment variable
             const response = await axios.post(
                 `${import.meta.env.VITE_API_URL}/api/users/register`, 
                 formData
@@ -107,15 +110,53 @@ function Signup() {
             
             <form onSubmit={handleSubmit} className={styles.form}>
                 
-                {/* ... other input groups (firstName, lastName, phoneNumber) using handleChange ... */}
+                {/* First Name */}
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>First Name</label>
+                    <input
+                        type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                        className={styles.formInput}
+                    />
+                </div>
 
+                {/* Last Name */}
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>Last Name</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                        className={styles.formInput}
+                    />
+                </div>
+
+                {/* Phone Number */}
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>Phone Number</label>
+                    <input
+                        type="tel"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                        required
+                        className={styles.formInput}
+                    />
+                </div>
+
+                {/* BVN INPUT (with Verification Status) */}
                 <div className={styles.inputGroup}>
                     <label className={styles.label}>BVN (Bank Verification Number)</label>
                     <input
                         type="text"
                         name="bvn"
                         value={formData.bvn}
-                        onChange={handleBvnChange} // <-- Use new handler for BVN
+                        onChange={handleBvnChange} // <-- Uses the BVN handler
                         required
                         minLength="11"
                         maxLength="11"
@@ -127,6 +168,7 @@ function Signup() {
                     </div>
                 </div>
 
+                {/* Email */}
                 <div className={styles.inputGroup}>
                     <label className={styles.label}>Email</label>
                     <input
@@ -139,6 +181,7 @@ function Signup() {
                     />
                 </div>
 
+                {/* Password */}
                 <div className={styles.inputGroup}>
                     <label className={styles.label}>Password</label>
                     <input
