@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
-import Policy from '../components/Policy.jsx';
+import Policy from '../components/Policy.jsx'; 
 
 function Signup() {
     const navigate = useNavigate();
@@ -95,13 +95,20 @@ function Signup() {
     return (
         <div className={styles.pageContainer}>
             <header className={styles.brandingHeader}>
-                {/* LOGO Implementation: Using the image from the public folder */}
-                <div className={styles.logoPlaceholder}>
-                    <img 
-                        src="/images/digisave_logo.png" 
-                        alt="DigiSave Logo" 
-                        className={styles.logoImage} 
-                    />
+                 {/* Updated Branding Block */}
+                <div className={styles.logoBlock}>
+                    {/* 1. Large Logo */}
+                    <div className={styles.logoContainer}>
+                        <img 
+                            src="/images/digisave_logo.png" 
+                            alt="DigiSave Logo" 
+                            className={styles.logoImage} 
+                        />
+                    </div>
+                    {/* 2. Centered Name */}
+                    <span className={styles.logoName}>DIGISAVE</span>
+                    {/* 3. Tiny Tagline */}
+                    <span className={styles.logoTagline}>The Future of Shared Finance</span>
                 </div>
                 
                 <h3 className={styles.introMessage}>Create Your Account</h3>

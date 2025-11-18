@@ -26,22 +26,43 @@
     border-bottom: 1px solid var(--border-light);
 }
 
-.logoPlaceholder {
-    /* Styles for the Logo Container */
-    margin-bottom: 0.5rem;
-    /* Optional: If you want to enforce a specific height/width for the container */
-    height: 60px; /* Example height */
+/* New Block to house logo, name, and tagline together */
+.logoBlock {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    margin-bottom: 1rem; /* Space before Welcome Back message */
+}
+
+.logoContainer {
+    /* Container for the logo image */
+    width: 100px; /* **Adjust for desired large size** (e.g., 80px to 120px) */
+    height: 100px; /* Maintain aspect ratio for square logos */
+    margin-bottom: 5px; 
 }
 
 .logoImage {
-    /* Styles for the actual Image */
-    max-width: 150px; /* Adjust this to control logo width */
-    max-height: 100%;
-    height: auto;
+    /* Styles for the actual Image - set to fill its container */
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+}
+
+.logoName {
+    /* Centered Name: DIGISAVE */
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.logoTagline {
+    /* Tiny Tagline */
+    font-size: 0.75rem; /* **Tiny font size** */
+    font-weight: 400;
+    color: #888;
+    margin-bottom: 1.5rem; /* Space below the tagline */
 }
 
 .introMessage {
@@ -58,13 +79,12 @@
     line-height: 1.4;
     margin-bottom: 0;
 }
-/* Removed old .header and .subHeader styles as they were refactored */
 
 /* --- FORM LAYOUT --- */
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Reduced gap for sleeker look */
+    gap: 1rem;
 }
 
 .inputGroup {
@@ -81,12 +101,12 @@
 
 .formInput {
     width: 100%;
-    padding: 1rem; /* Slightly larger padding for modern inputs */
+    padding: 1rem;
     font-size: 1rem;
     color: var(--text-dark);
     background-color: #f7f7f7;
     border: 1px solid var(--border-light);
-    border-radius: 10px; /* More rounded corners */
+    border-radius: 10px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
 }
@@ -97,9 +117,9 @@
 
 .formInput:focus {
     outline: none;
-    border-color: var(--primary-color); /* Use primary color on focus */
-    box-shadow: 0 0 0 3px rgba(0, 143, 57, 0.15); /* Sleeker, lighter shadow */
-    background-color: var(--text-light); /* White background on focus */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 143, 57, 0.15);
+    background-color: var(--text-light);
 }
 
 /* --- BVN STATUS MESSAGES --- */
@@ -108,35 +128,34 @@
     font-size: 0.85rem;
 }
 .bvnVerified {
-    color: #15c364; /* Vibrant Green */
+    color: #15c364; 
     font-weight: 600;
 }
 .bvnChecking {
-    color: #f9a825; /* Warning Yellow */
+    color: #f9a825;
 }
 .bvnError {
-    color: #e74c3c; /* Alert Red */
+    color: #e74c3c;
     font-weight: 500;
 }
 
 /* --- BUTTON STYLING --- */
 .submitBtn {
-    /* Apply the gradient */
     background: var(--primary-gradient);
     color: var(--text-light);
     font-size: 1.1rem;
     font-weight: 600;
     border: none;
-    border-radius: 10px; /* Matching input rounding */
+    border-radius: 10px;
     padding: 1rem;
     cursor: pointer;
-    margin-top: 1.5rem; /* Increased top margin for separation */
-    box-shadow: 0 4px 15px rgba(0, 143, 57, 0.3); /* Button Shadow */
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 143, 57, 0.3);
     transition: all 0.2s ease;
 }
 
 .submitBtn:hover:not(:disabled) {
-    background: var(--primary-green-dark); /* Fallback/hover color */
+    background: var(--primary-green-dark);
     box-shadow: 0 6px 20px rgba(0, 143, 57, 0.4);
     transform: translateY(-1px);
 }
