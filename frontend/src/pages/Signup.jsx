@@ -1,10 +1,8 @@
-// In frontend/src/pages/Signup.jsx
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
-import Policy from '../components/Policy.jsx'; // <--- NEW IMPORT
+import Policy from '../components/Policy.jsx';
 
 function Signup() {
     const navigate = useNavigate();
@@ -18,10 +16,8 @@ function Signup() {
         password: '',
     });
     
-    // --- NEW STATES FOR BVN AND POLICY ---
-    const [bvnStatus, setBvnStatus] = useState(null); // null, 'checking', 'verified', 'error'
-    const [agreedToPolicy, setAgreedToPolicy] = useState(false); // CRITICAL: Policy Check
-    // -------------------------------------
+    const [bvnStatus, setBvnStatus] = useState(null); 
+    const [agreedToPolicy, setAgreedToPolicy] = useState(false); 
 
     const handleBvnChange = (e) => {
         const { value } = e.target;
@@ -32,7 +28,6 @@ function Signup() {
             setBvnStatus('checking');
             // Simulate API latency
             setTimeout(() => {
-                // Check if it's 11 digits and purely numeric
                 if (/^\d{11}$/.test(value)) {
                     setBvnStatus('verified');
                 } else {
@@ -67,7 +62,6 @@ function Signup() {
         setLoading(true);
 
         try {
-            // Ensure you are using the correct web environment variable
             const response = await axios.post(
                 `${import.meta.env.VITE_API_URL}/api/users/register`, 
                 formData
@@ -86,13 +80,13 @@ function Signup() {
 
     const getBvnMessage = () => {
         if (bvnStatus === 'verified') {
-            return <span style={{color: 'green', fontWeight: 'bold'}}>✅ BVN Verified (Dummy Check)</span>;
+            return <span className={styles.bvnVerified}>✅ BVN Verified</span>;
         }
         if (bvnStatus === 'checking') {
-            return <span style={{color: '#f9a825'}}>⏳ Verifying...</span>;
+            return <span className={styles.bvnChecking}>⏳ Verifying...</span>;
         }
         if (bvnStatus === 'error') {
-            return <span style={{color: 'red'}}>❌ BVN must be 11 digits and numerical.</span>;
+            return <span className={styles.bvnError}>❌ BVN must be 11 digits.</span>;
         }
         return null;
     };
@@ -101,7 +95,15 @@ function Signup() {
     return (
         <div className={styles.pageContainer}>
             <header className={styles.brandingHeader}>
-                <h1 className={styles.appName}>DigiSave</h1>
+                {/* LOGO Implementation: Using the image from the public folder */}
+                <div className={styles.logoPlaceholder}>
+                    <img 
+                        src="/images/digisave_logo.png" 
+                        alt="DigiSave Logo" 
+                        className={styles.logoImage} 
+                    />
+                </div>
+                
                 <h3 className={styles.introMessage}>Create Your Account</h3>
                 <p className={styles.appDescription}>
                     Join a trusted, KYC-verified community and start saving today.
@@ -156,14 +158,14 @@ function Signup() {
                         type="text"
                         name="bvn"
                         value={formData.bvn}
-                        onChange={handleBvnChange} // <-- Uses the BVN handler
+                        onChange={handleBvnChange} 
                         required
                         minLength="11"
                         maxLength="11"
                         placeholder="11-digit BVN"
                         className={styles.formInput}
                     />
-                    <div style={{ marginTop: '5px' }}>
+                    <div className={styles.bvnStatusContainer}>
                         {getBvnMessage()} {/* Display verification status */}
                     </div>
                 </div>
@@ -194,7 +196,7 @@ function Signup() {
                     />
                 </div>
                 
-                {/* --- POLICY CHECKBOX (NEW) --- */}
+                {/* --- POLICY CHECKBOX --- */}
                 <Policy 
                     agreed={agreedToPolicy} 
                     setAgreed={setAgreedToPolicy} 
