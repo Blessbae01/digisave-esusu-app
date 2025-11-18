@@ -21,8 +21,8 @@
 /* --- LOGO/BRANDING SECTION --- */
 .brandingHeader {
     text-align: center;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* Reduced from 2.5rem */
+    padding-bottom: 1rem; /* Reduced from 1.5rem */
     border-bottom: 1px solid var(--border-light);
 }
 
@@ -31,14 +31,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem; /* Space before Welcome Back message */
+    margin-bottom: 0.5rem; /* Reduced from 1rem */
 }
 
 .logoContainer {
     /* Container for the logo image */
-    width: 100px; /* **Adjust for desired large size** (e.g., 80px to 120px) */
+    width: 100px; /* Adjust for desired large size */
     height: 100px; /* Maintain aspect ratio for square logos */
-    margin-bottom: 5px; 
+    margin-bottom: 3px; /* Reduced from 5px */
 }
 
 .logoImage {
@@ -54,22 +54,22 @@
     font-weight: 800;
     color: var(--primary-color);
     letter-spacing: 1px;
-    margin-bottom: 2px;
+    margin-bottom: 1px; /* Reduced from 2px */
 }
 
 .logoTagline {
     /* Tiny Tagline */
-    font-size: 0.75rem; /* **Tiny font size** */
+    font-size: 0.75rem; /* Tiny font size */
     font-weight: 400;
     color: #888;
-    margin-bottom: 1.5rem; /* Space below the tagline */
+    margin-bottom: 0.8rem; /* Reduced from 1.5rem */
 }
 
 .introMessage {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-dark);
-    margin-top: 1rem;
+    margin-top: 0.5rem; /* Reduced from 1rem */
     margin-bottom: 0.5rem;
 }
 
